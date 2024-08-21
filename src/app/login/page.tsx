@@ -10,7 +10,8 @@ import {
 import { Input } from '@/shared-components/input';
 import { Label } from '@/shared-components/label';
 import { redirect } from 'next/navigation';
-import { emailLogin } from './actions';
+import { emailLogin, signupEmail } from './actions';
+import { OAuthButtons } from './oauth-signin';
 
 interface LoginPageProps {
     searchParams: { message: string };
@@ -69,6 +70,13 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                             Login
                         </Button>
                     </form>
+                    <OAuthButtons />
+                    <div className="text-center text-sm">
+                        Don&apos;t have an account?{' '}
+                        <button formAction={signupEmail} form="login-form" className="underline">
+                            Sign up
+                        </button>
+                    </div>
                 </CardContent>
             </Card>
         </section>
