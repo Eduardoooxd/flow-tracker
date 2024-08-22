@@ -1,3 +1,4 @@
+import Header from '@/components/header';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
@@ -23,10 +24,11 @@ export default function RootLayout({
             <head />
             <body
                 className={cn(
-                    'min-h-screen bg-background font-sans antialiased',
+                    'min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900',
                     fontSans.variable,
                 )}
             >
+                <Header />
                 {children}
             </body>
         </html>
