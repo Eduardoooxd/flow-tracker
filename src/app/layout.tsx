@@ -29,7 +29,7 @@ export default function RootLayout({
                 )}
             >
                 <Header />
-                {children}
+                <main className="flex flex-col items-center">{children}</main>
             </body>
         </html>
     );
