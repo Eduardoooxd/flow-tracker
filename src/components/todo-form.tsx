@@ -13,9 +13,28 @@ interface TodoFormProps {
     optimisticUpdate: TodoOptimisticUpdate;
 }
 
+function FormContent() {
+    const { pending } = useFormStatus();
+
+    return (
+        <>
+            <Textarea
+                disabled={pending}
+                minLength={4}
+                name="todo"
+                required
+                placeholder="Add a new todo"
+            />
+            <Button type="submit" size="icon" className="min-w-10" disabled={pending}>
+                <Send className="h-5 w-5" />
+                <span className="sr-only">Submit Todo</span>
+            </Button>
+        </>
+    );
+}
+
 export default function TodoForm({ optimisticUpdate }: TodoFormProps) {
     const formRef = useRef<HTMLFormElement>(null);
-    const { pending } = useFormStatus();
 
     const createNewTodo = async (data: FormData) => {
         const newTodo: Todo = {
@@ -34,17 +53,7 @@ export default function TodoForm({ optimisticUpdate }: TodoFormProps) {
         <Card>
             <CardContent className="p-3">
                 <form ref={formRef} className="flex gap-4" action={createNewTodo}>
-                    <Textarea
-                        disabled={pending}
-                        minLength={4}
-                        name="todo"
-                        required
-                        placeholder="Add a new todo"
-                    />
-                    <Button type="submit" size="icon" className="min-w-10" disabled={pending}>
-                        <Send className="h-5 w-5" />
-                        <span className="sr-only">Submit Todo</span>
-                    </Button>
+                    <FormContent />
                 </form>
             </CardContent>
         </Card>
