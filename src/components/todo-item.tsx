@@ -45,7 +45,7 @@ export default function TodoCard({ todo, optimisticUpdate }: TodoItemProps) {
                 <p className={cn('min-w-0 flex-1 break-words pt-2')}>{todo.task}</p>
                 <Button
                     disabled={pending}
-                    formAction={async (data) => {
+                    onClick={async (data) => {
                         optimisticUpdate({ action: 'delete', todo });
                         await deleteTodo(todo.id);
                     }}
